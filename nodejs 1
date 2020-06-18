@@ -42,3 +42,4 @@ id=html&page=12 = query string @@@
 http://localhost/?id=HTML
 url에서 정보 추출해 원하는 정보에 접근한다.
 querystring에 따라 다른 정보를 출력하는 web을 만들 수 있다.
+웹페이지를 효율적으로 관리할 수 있다.
