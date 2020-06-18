@@ -1,0 +1,44 @@
+##node js로 웹서버 만들기.
+아파티 웹서버는 할 수 없는 일 할 수 있다.
+var http = require('http');
+var fs = require('fs');
+var app = http.createServer(function(request,response){
+    var url = request.url;
+    if(request.url == '/'){
+      url = '/index.html';
+    }
+    if(request.url == '/favicon.ico'){
+      return response.writeHead(404);
+    }
+    response.writeHead(200);
+    response.end(fs.readFileSync(__dirname + url));
+    //response.end(00), 00에 어떤 코드를 넣느냐에 따라 사용자에게 전송하는 데이터가 바뀐다.(아파치는 못함)
+    //프로그래밍적으로 사용자에게 전송할 데이터를 생성한다.
+ 
+});
+app.listen(3000);
+해당 코드 실행하면 웹서버로서 동작함.
+
+
++a:Template Literal
+` ${}를 사용하여 문단을 띄어쓰기,중간에 변수, 데이터 삽입을 쉽게 할 수 있다.
+
+
+#url
+1억개의 페이지를 만들려면 1억개의 정적인 페이지를 만들어야 한다??
+no 같은 파일로 표현 여러개 할 수 있다.
+https = 통신규칙
+://
+opentutorials.org = 호스트, 특정 인터넷 연결 컴퓨터 주소
+:
+3000 = port,한개의 컴터 안에 여러개 서버, 접속할 때 3000번 포트에 연결되어 있는 서버와 통신한다.
+(app.listen(3000); 3000번 포트에서 웹서버 실행시킨 것)
+/
+main=path
+?
+id=html&page=12 = query string @@@
+
+#query string
+http://localhost/?id=HTML
+url에서 정보 추출해 원하는 정보에 접근한다.
+querystring에 따라 다른 정보를 출력하는 web을 만들 수 있다.
