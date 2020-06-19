@@ -1,0 +1,24 @@
+crud,정보 핵심 처리 방법
+
+create+read+update+delete
+
+어떤 프로그램이든 이 4가지 측면에서 파악해보면 된다
+
+nodejs로 읽고 생성, 수정, 삭제 하는 방법을 배워보자.
+파일 읽는 방법
+
+https://nodejs.org/dist/latest-v6.x/docs/api/fs.html#fs_fs_readfile_file_options_callback
+
+const fs = require('fs');
+
+선언후 
+
+To use this module do require('fs') file system을 사용하기 위해서는 해당 명령어를 수행해야 한다.
+
+fs.readFile('/etc/passwd', (err, data) => {
+  if (err) throw err;
+  console.log(data);
+});
+이후 위와 같은 지시어를 시행하면 파일을 읽을 수 있다.
+
+##query string에 따라 본문의 내용이 바뀌는 웹앱 만든다.
