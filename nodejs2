@@ -22,3 +22,4 @@ fs.readFile('/etc/passwd', (err, data) => {
 이후 위와 같은 지시어를 시행하면 파일을 읽을 수 있다.
 
 ##query string에 따라 본문의 내용이 바뀌는 웹앱 만든다.
+
