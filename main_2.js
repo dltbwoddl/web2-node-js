@@ -1,3 +1,5 @@
+//1과 다르게뭐가 달라졌나?
+//web을 눌렀을 때 undefined이 떴던 것을 welcome welcome 이 뜨게 하기 위해 조건문을 사용했다.
 var http = require('http');//To use the HTTP server and client one must require('http').
 console.log(1);
 var fs = require('fs');//The fs module provides an API for interacting with the file system in a manner closely modeled around standard POSIX functions.
