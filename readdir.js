@@ -1,5 +1,5 @@
 //파일 리스트 불러오기
-var testFolder = './data';
+var testFolder = './data';//./은 현재 디렉토리에서 라는 
 var fs = require('fs');
 
 fs.readdir(testFolder,function(error, filelist){
