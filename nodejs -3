@@ -1,0 +1,4 @@
+글목록 출력하기.
+
+fs.readdir 활용. 
+fs.readdir('./data',function(error,filelist){})
