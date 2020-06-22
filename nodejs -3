@@ -1,4 +1,4 @@
 글목록 출력하기.
-
+이유는 데이터가 바뀌 었을 때 로직을 바꿀 필요가 없게 하기 위해서.
 fs.readdir 활용. 
 fs.readdir('./data',function(error,filelist){})
