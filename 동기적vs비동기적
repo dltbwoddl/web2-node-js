@@ -5,8 +5,8 @@
 일시켜놓고 다른 일 처리하는 것. 동시에 일처리.
 
 nodejs는 비동기적으로 일을 처리할 수 있도록 한다.
-
-callback유무에 따른 차이
+비동기적 처리는 프로그램을 보다 효율적으로 동작할 수 있도록 한다.
+단순한 프로그램의 경우에는 동기적으로 처리해도 된다.
 
 //'sync.txt'=ㅁㄴㅇㄻㄹ
 var fs = require('fs');//The fs module provides an API for interacting with the file system in a manner closely modeled around standard POSIX functions.
