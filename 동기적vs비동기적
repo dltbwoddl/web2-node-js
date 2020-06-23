@@ -5,3 +5,29 @@
 일시켜놓고 다른 일 처리하는 것. 동시에 일처리.
 
 nodejs는 비동기적으로 일을 처리할 수 있도록 한다.
+
+callback유무에 따른 차이
+
+//'sync.txt'=ㅁㄴㅇㄻㄹ
+var fs = require('fs');//The fs module provides an API for interacting with the file system in a manner closely modeled around standard POSIX functions.
+console.log(1);
+result=fs.readFileSync('sync.txt','utf-8');
+console.log(result);
+console.log(2);
+
+console.log(3);
+//result= 빠지는 이유는 readFileSync은 리턴 값을 주는데 readfile은 리턴 값을 주지 않기 때문이다.
+//callback함수는 파일의 내용 인자로서 공급해줌.
+fs.readFile('sync.txt','utf-8', (err, data) => {
+    if (err) throw err;
+    console.log(data);
+  });
+console.log(4);
+
+//결과:
+// 1
+// ㅁㄴㅇㄻㄹ
+// 2
+// 3
+// 4
+// ㅁㄴㅇㄻㄹ
