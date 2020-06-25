@@ -1,5 +1,7 @@
 //글수정-수정할 정보 전송
 //글 삭제 기능 구현하기.
+//특강 js에서 객체와 배열은 모두 정보를 정리정돈하는 도구이다.
+//객체는 순서 없이, 배열은 순서에 따라서
 var http = require('http');//To use the HTTP server and client one must require('http').
 var fs = require('fs');//The fs module provides an API for interacting with the file system in a manner closely modeled around standard POSIX functions.
 var url = require('url');//The url module provides utilities for URL resolution and parsing.
