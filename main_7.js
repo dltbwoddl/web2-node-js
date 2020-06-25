@@ -1,4 +1,5 @@
 //글수정-수정할 정보 전송
+//글 삭제 기능 구현하기.
 var http = require('http');//To use the HTTP server and client one must require('http').
 var fs = require('fs');//The fs module provides an API for interacting with the file system in a manner closely modeled around standard POSIX functions.
 var url = require('url');//The url module provides utilities for URL resolution and parsing.
@@ -51,7 +52,12 @@ function getpage(queryDataid,response){
       var title = queryDataid
       fs.readdir('./data', function (error, filelist) {
       var list =listtemplate(filelist);
-      var template = templatehtml(title,list,`<h2>${title}</h2><p>${describesion}</p>`,`<a href='/create'>creat</a> <a href = '/update?id=${title}'>update</a>`)
+      var template = templatehtml(title,list,`<h2>${title}</h2><p>${describesion}</p>`,
+      `<a href='/create'>creat</a> <a href = '/update?id=${title}'>update</a>
+      <form action="delete_process" method="post"> 
+      <input type="hidden" name="id" value="${title}">
+      <input type="submit" value="delete">
+      </form>`)
       response.writeHead(200);
       response.end(template);
     });
@@ -151,6 +157,23 @@ var app = http.createServer(function (request, response) {
         
     });
 
+  }
+  else if (pathname=="/delete_process"){
+    var body = '';
+    request.on('data', function (data) {
+        body = body + data;
+    });
+    request.on('end', function () {
+        var post = qs.parse(body);
+        var id=post.id;
+        fs.unlink(`data/${post.id}`, (err) => {
+          console.log(`data/${post.id}`)
+          if (err) throw err;
+          console.log(`${post.id} was deleted`);
+          response.writeHead(302, {location:`/`});
+                response.end();
+        });     
+    });
   }
   else {
     response.writeHead(404);
