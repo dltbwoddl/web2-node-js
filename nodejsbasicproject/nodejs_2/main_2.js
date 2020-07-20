@@ -1,10 +1,12 @@
 //data mysql로 옮기기 + 아이디 계속 생산해 페이지 업그레이드 하기.+res.writehead와 end의 관계
+//함수들이 모두 비동기적으로 작동한다는 사실을 알자.
 var http = require('http');
 var fs = require('fs');
 var url = require('url');
 var qs = require('querystring');
 var datei = new Date();
 var date=datei.getMonth()+1+"m"+datei.getDate()+"d";
+var pagemove = 0;
 template1 = function (cssfile, jsfile) {
     return (
         `
@@ -93,6 +95,9 @@ template2 = function (tipdata) {
     <form action="http://localhost:3000/before">
     <button type="submit"><sup>before</sup></button>
     </form>
+    <form action="http://localhost:3000/after">
+    <button type="submit"><sup>after</sup></button>
+    </form>
     <form action="http://localhost:3000/today">
     <button type="submit"><sup>today</sup></button>
     </form>
@@ -152,16 +157,36 @@ var app = http.createServer(function (request, response) {
             response.end()
           });
     }
-    else if (pathname==="/before"){
-        //이부분 정확수정하기.다양한 경우의 수 고려해서
+    else if (pathname === "/before") {
+        i-=1;
         var datei = new Date();
-        var date=datei.getMonth()+1-i+"m"+datei.getDate()+"d";
+        var datem = datei.getMonth() + 1 + "m"
+        var dated = datei.getDate() +i +"d"
+        var date = datem + dated;
         fs.readFile(`./data/tip${date}`, (err, tipdata) => {
-            template_2=template2(tipdata);
+            console.log(date)
+            template_2 = template2(tipdata);
             response.writeHead(200);
             response.end(template_2);
-            console.log("this is page tips")
-        })
+            console.log("this is before page tips")
+        });
+    }
+    else if (pathname === "/after") {
+        i+=1
+        var datei = new Date();
+        var datem = datei.getMonth() + 1 + "m"
+        var dated = datei.getDate() +i +"d"
+        var date = datem + dated;
+        fs.readFile(`./data/tip${date}`, (err, tipdata) => {
+            console.log(date)
+            template_2 = template2(tipdata);
+            response.writeHead(200);
+            response.end(template_2);
+            // response.writeHead(302, { location: `./tip7m19d` });
+            // response.end();
+            // console.log(pathname)
+            console.log("this is before page tips")
+        });
     }
     else if(pathname==="/today"){
         var datei = new Date();
